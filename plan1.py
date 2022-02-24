@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import sys
-from math import *
+from math import * 
 
 ## Summary:
 # This is the main file for the simulation.
@@ -66,10 +66,10 @@ class Particle:
         self.ax += x
         self.ay += y
 
-    def update(self):
-
-
-    # Gravity Last
     def gravity(self):
         self.ax += 0
         self.ay += -9.81
+
+    
+    def update(self):
+        
