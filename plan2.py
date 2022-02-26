@@ -1,11 +1,11 @@
 ## Imports
-import scipy
-import numpy as np
+#import scipy
+#import numpy as np
 import matplotlib.pyplot as plt
 import math
 
 ## Properties of normal Portland Cement Concrete (Sources at botttom)
-
+"""
 Density = 2300 
 Compressive_strength = 30
 Flexural_strength = 4
@@ -19,18 +19,19 @@ Poissons_ratio = 0.20
 Shear_strength = 11.5
 # Specific heat - c =  0.75 kJ/kg K (0.18 Btu/lbm oF (kcal/kg oC))
 
-
+"""
 ## Da code
 
 
-def waterAmtForWeight(cementWeight, ratio):
-    return (cementWeight/ratio)
+def waterAmtForWeight(cementWeight, ratio): # ration between 0.1 and 1.0
+    return (cementWeight*ratio)
 
 points = []
 
-for i in range(0, 100):
+for i in range(1,100):
     concreteAmount = 100
-    y = waterAmtForWeight(concreteAmount, 1/i)
+    x = i/1
+    y = waterAmtForWeight(concreteAmount, x)
     points.append(y)
 
 
