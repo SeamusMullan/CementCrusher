@@ -26,11 +26,17 @@ Shear_strength = 11.5
 def waterAmtForWeight(cementWeight, ratio):
     return (cementWeight/ratio)
 
+points = []
 
-print(waterAmtForWeight(50, 0.5)) # Should print 25
+for i in range(0, 100):
+    concreteAmount = 100
+    y = waterAmtForWeight(concreteAmount, 1/i)
+    points.append(y)
 
 
-
+plt.plot(points)
+plt.ylabel("da points")
+plt.show()
 
 
 
