@@ -1,9 +1,12 @@
 ## Imports
 import matplotlib.pyplot as plt
+from matplotlib.pyplot import figure
 import numpy
 import random
 from scipy.stats import linregress
 import pprint
+
+figure(figsize=(10, 6))
 # from pytest import yield_fixture
 
 ## Properties of normal Portland Cement Concrete
@@ -45,9 +48,7 @@ Graph the results and highlight the strongest mix
 ## GRAPH PLOTTING
 
 def plotgraph(waterPercent, x):
-    prediction_line = [i for i in range(0,100)]
-    # prediction_line = [0, 1, 2, 3, 4, 5, 6, 6.5, 7, 7.5, 7.75, 8.25, 8.5, 8, 7.8, 7.2, 6.3, 6, 5.8, 5.4, 5.1, 4.3, 3.4, 2.3, 1.4, 1, 0.8, 0.3]
-    
+    prediction_line = [i*(waterPercent/100) for i in range(0,100)]    
 
     data = []
     for i in range(0, 1000):
@@ -60,15 +61,8 @@ def plotgraph(waterPercent, x):
 
     # print(data)
 
-    # slope, intercept, r, p, se = linregress(data, prediction_line)
-
-    # pprint.pprint(slope)
-
-
-
-    # plt.plot(data)
-    # plt.show()
-
+    slope, intercept, r, p, se = linregress(prediction_line[0:50], data[0:50])
+    print(slope*1e-2)
 
     ## YIELD POINTS
 
@@ -93,9 +87,13 @@ def plotgraph(waterPercent, x):
 
 
     # Plot the stress strain graph and highlight the highest and lowest yield points
-    plt.plot(data)
-    plt.axhline(y=maxPoint, color='b', linestyle='dotted') # Strongest mix
-    plt.savefig(f'graph{x}.png')
+    plt.plot(data, label=f'{waterPercent}% Water - Young\'s Modulus : {round(slope*1e-2, 2)}')
+    # plt.axhline(y=maxPoint, color='b', linestyle='dotted') # Strongest mix
+    leg = plt.legend(loc='best')
+    plt.title("Stress / Strain (Compressive Strength)")
+
+    plt.savefig(f'figs/graph{x}.png')
+
 
 
 
@@ -103,7 +101,7 @@ def plotgraph(waterPercent, x):
 def main():
 
     ## WATER PERCENTAGE
-    waterPercent = [i for i in range(0,100)]
+    waterPercent = [i for i in range(0, 110, 10)]
 
     ## STRESS-STRAIN GRAPH
     for i in waterPercent:
