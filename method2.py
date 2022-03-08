@@ -87,7 +87,7 @@ def plotgraph(waterPercent, x):
 
 
     # Plot the stress strain graph and highlight the highest and lowest yield points
-    plt.plot(data, label=f'{waterPercent}% Water - Young\'s Modulus : {round(slope*1e-2, 2)}')
+    plt.plot(data, label=f'{waterPercent}% Water - {round(slope*1e-2, 2)} GPa')
     # plt.axhline(y=maxPoint, color='b', linestyle='dotted') # Strongest mix
     leg = plt.legend(loc='best')
     plt.title("Stress / Strain (Compressive Strength)")
